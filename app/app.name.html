@@ -1,0 +1,12 @@
+<h1>{{name}}</h1>
+
+
+<div *ngFor="let rest of restaurants" class="restaurant">
+<h2>{{ rest.name }}</h2>
+<span class="valid">Platne do: {{ rest.menu.end_date }} </span>
+<ul>
+	<li *ngFor="let dish of rest.menu.dishes">
+		{{ dish.dish.name }}
+	</li>
+</ul>
+</div>

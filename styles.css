@@ -1,0 +1,30 @@
+body {
+	font-family: sans-serif;
+	background: #eee;
+}
+
+h1 {
+	color: #999;
+	text-align: center;
+}
+
+.restaurant {
+	border: 1px solid grey;
+	margin: 1em;
+	padding: 1em;
+	width: calc(50% - 4em - 10px);
+	background: #fff;
+float: left;
+}
+
+.restaurant:nth-child(2n) {
+	clear: both;
+}
+
+.restaurant ul {
+	list-style-type: none;
+}
+
+.restaurant ul li {
+	margin: 1em 0;
+}
