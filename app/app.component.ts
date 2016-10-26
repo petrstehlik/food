@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
   selector: 'my-app',
   templateUrl: 'app/app.name.html'
 })
-export class AppComponent { 
+export class AppComponent {
 	name = 'Food agregator';
 	restaurants : JSON[] = [];
 
@@ -20,6 +20,9 @@ export class AppComponent {
 		this.getRestaurant(16506806);
 		this.getRestaurant(16506807);
 		this.getRestaurant(16505905);
+		this.getRestaurant(18235286);
+		this.getRestaurant(16511895);
+		this.getRestaurant(10000000);
 	}
 
 	getRestaurant(id : Number) {
