@@ -24,7 +24,6 @@ def molino():
 
 
 	for row in data.find_all('tr'):
-		print(row)
 		item = row.find_all('td')
 		res['menu']["dishes"].append({"dish" : {
 			"name" : item[0].get_text().replace('\n', '').replace('\r', ''),

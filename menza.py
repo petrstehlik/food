@@ -17,7 +17,6 @@ def menza():
 
 	for row in menu[0].find_all("tr"):
 		name = row.find("td", class_="levyjid")
-		print(name.get_text().encode('utf-8'))
 		res['menu']["dishes"].append({"dish" : {
 			"name" : name.get_text()
 			}})
