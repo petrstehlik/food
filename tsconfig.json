@@ -9,5 +9,10 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
-  }
+  },
+"files": [
+        "app/main.ts",
+        "app/app.component.ts",
+        "app/app.module.ts"
+    ]
 }
