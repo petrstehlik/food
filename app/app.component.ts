@@ -11,6 +11,8 @@ import 'rxjs/add/operator/map';
 export class AppComponent {
 	name = 'Food agregator';
 	restaurants : JSON[] = [];
+	molino : JSON;
+	data : JSON;
 
 	constructor (public http: Http) {};
 
@@ -23,6 +25,11 @@ export class AppComponent {
 		this.getRestaurant(18235286);
 		this.getRestaurant(16511895);
 		this.getRestaurant(10000000);
+	}
+
+	getByID(id : Number) : JSON {
+		this.http.get('/api/restaurants/' + id).map((res:Response) => {this.data = res.json()});
+		return this.data;
 	}
 
 	getRestaurant(id : Number) {
