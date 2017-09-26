@@ -5,7 +5,6 @@ import json
 import pycurl
 from io import StringIO
 from io import BytesIO
-from bs4 import BeautifulSoup
 
 from cesta import kralovska_cesta
 from molino import molino
@@ -68,24 +67,32 @@ def get_rest_by_id(id):
 		print("Error: " + str(e))
 		return(json.dumps({"error" : "Restaurant with given ID doesn't exist"}), 404)
 
-	return(json.dumps(result, ensure_ascii=False).encode('utf8'))
+	return(json.dumps(result, ensure_ascii=False, encoding='utf8').encode('utf8'))
 
 def zomato_rest(id):
 	buf = BytesIO()
 	api = pycurl.Curl()
 	api.setopt(api.URL, url(id))
 	api.setopt(api.WRITEDATA, buf)
+	api.setopt(pycurl.SSL_VERIFYPEER, 0)
+	api.setopt(pycurl.SSL_VERIFYHOST, 0)
 	api.setopt(api.HTTPHEADER, ['user_key: a5f5fc339646b270219542f96a157bdf',
 		'Accept: application/json; charset=utf8',
 		'content-type: application/json; charset=utf8'])
 	api.perform()
 	api.close()
 	buf_str = buf.getvalue()
-	buf_un = json.loads(str(buf_str, 'utf8'))
+	buf_str = buf_str.encode('utf8')
+	buf_un = json.loads(str(buf_str))#, 'utf8'))
+
+	print(buf_un)
 
 	if buf_un["status"] != "success" and buf_un["code"] != 200:
 		return({"error" : "Encountered error code " + str(buf_un["code"])})
 	return({"menu" : buf_un["daily_menus"][0]["daily_menu"]})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True, threaded=False)
+    from gevent.wsgi import WSGIServer
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
