@@ -2,10 +2,10 @@
 
 <div *ngFor="let rest of restaurants" class="restaurant">
 <h2>{{ rest.name }}</h2>
-<span class="valid">Platne do: {{ rest.menu.end_date }} </span>
+<span class="valid">Platne do: {{ rest?.menu?.end_date }} </span>
 <ul>
-	<li *ngFor="let dish of rest.menu.dishes">
-		{{ dish.dish.name }}
+	<li *ngFor="let dish of rest?.menu?.dishes">
+		{{ dish?.dish?.name }}
 	</li>
 </ul>
 </div>
@@ -24,12 +24,12 @@
 </ul>
 </div>
 
-<div class="restaurant">
+<!--div class="restaurant">
 <h3>Molino</h3>
 <ul>
 	{{ molino | json }}
 </ul>
 
-</div>
+</div-->
 
 
